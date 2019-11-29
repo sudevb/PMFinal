@@ -1,0 +1,180 @@
+<h3>Add/Update Project:</h3>
+<div class="col-md-9">
+  <form [formGroup]="projectForm" (ngSubmit)="addorUpdateProject()" novalidate>
+    <div class=" row form-group">
+      <div class="col-md-4">
+        <label for="projectName"><strong>Project Name</strong></label>
+        <span class="astreik">
+          <b>*</b>
+        </span>
+      </div>
+      <div class="col-md-8">
+        <input
+          type="text"
+          class="form-control"
+          name="projectName"
+          aria-describedby="projectName"
+          formControlName="projectName"
+        />
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <input
+              type="checkbox"
+              value="SetDates"
+              formControlName="setDates"
+              name="setDates"
+            />
+            <label for="setDates" class="checkboxPadding"><b>Set Start and End Date</b></label
+            >
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <input
+              class="form-control"
+              type="date"
+              placeholder="Start Date"
+              name="startDate"
+              aria-describedby="startDate"
+              formControlName="startDate"
+               [(ngModel)]="prjStartDate"
+               [disabled]="setDate"
+            />
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <input
+              class="form-control"
+              type="date"
+              placeholder="End Date"
+              name="endDate"
+              aria-describedby="endDate"
+              formControlName="endDate"
+               [(ngModel)]="prjEndDate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-2">
+        <label for="priority"><b>Priority:</b></label>
+      </div>
+      <div class="col-md-10">
+        <input
+          type="range"
+          min="0"
+          max="30"
+          step="1"
+          class="rangeControl"
+          formControlName="priority"
+          name="priority"
+        />
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-2">
+        <label for="manager"><b>Manager:</b></label>
+      </div>
+      <div class="col-md-8">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="manager"
+          name="manager"
+          aria-describedby="manager"
+          readonly
+        />
+      </div>
+      <div class="col-md-2">
+        <button
+          type="button"
+          class="btn btn-link"
+          data-toggle="modal"
+          data-target="#userSearchModel"
+        >
+          <span class="fa fa-search"></span>Search
+        </button>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-12 offset-md-9">
+        <input
+          type="hidden"
+          formControlName="projectId"
+          name="pruserSearchModelojectId"
+        />
+        <button [disabled]="projectForm.invalid" class="btn btn-success" id="btnAction">
+          {{ userAction }}
+        </button>
+        &nbsp;&nbsp;
+        <button type="button" class="btn btn-link" (click)="reset()" id="btnReset">
+          Reset
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<hr style="width: 100%;" class="hrLine" />
+<h3>List of Projects:</h3>
+<div class="col-md-9">
+  <div class="row form-group">
+    <div class="col-md-6">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+        name="search"
+        (input)="search($event.target.value)"
+      />
+    </div>
+  </div>
+</div>
+
+<span class="sortlbl">
+  <strong>Sort By Clicking on Table Header</strong> Project Name, No Of Tasks,
+  Status, Start Date, End Date, Priority</span
+>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" (click)="sort('Project')">Project Name</th>
+      <th scope="col" (click)="sort('NoOfTasks')">No of Tasks</th>
+      <th scope="col" (click)="sort('CompletedTasks')">Completed</th>
+      <th scope="col" (click)="sort('Start_Date')">Start Date</th>
+      <th scope="col" (click)="sort('End_Date')">End Date</th>
+      <th scope="col" (click)="sort('Priority')">Priority</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let project of Projects; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ project.Project }}</td>
+      <td>{{ project.NoOfTasks }}</td>
+      <td>{{ project.CompletedTasks }}</td>
+      <td>{{ project.Start_Date | date: "MM-dd-yyyy" }}</td>
+      <td>{{ project.End_Date | date: "MM-dd-yyyy" }}</td>
+      <td>{{ project.Priority }}</td>
+      <td>
+        <button
+          class="btn btn-primary"
+          (click)="editProject(project.Project_ID)"
+        >
+          Update
+        </button>
+        &nbsp;&nbsp;
+        <button
+          class="btn btn-danger"
+          (click)="suspendProject(project.Project_ID)"
+        >
+          Suspend
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<app-searchuser (userSelected)="onManagerSelected($event)"></app-searchuser>
