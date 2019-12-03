@@ -1,5 +1,5 @@
-// Mongo DB Configuration - Cloud [Vijay]
+// Mongo DB Configuration
 
 module.exports = {
-    ConnectionString: 'mongodb+srv://admin:admin@myatlascluster0-p0uai.mongodb.net/project-manager?retryWrites=true'
+    ConnectionString: 'mongodb://127.0.0.1:27017/projectmanager'
  };
