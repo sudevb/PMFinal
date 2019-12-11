@@ -119,7 +119,7 @@
         <input
         type="text"
         class="form-control fa fa-search"
-        placeholder="Search Data Using First/Last Name..."
+        placeholder="Search Name..."
         name="search"
         aria-describedby="search"
         (input)="search($event.target.value)"
@@ -130,7 +130,7 @@
     </div> <br />
         <span class="sortlbl"><strong>Sort By Clicking on Table Header</strong> First Name, Last Name, Employee ID</span>
         <table class="table table-hover">
-          <thead class="thead-dark">
+          <thead class="thead-light">
             <tr>
               <th scope="col">#</th>
               <th scope="col" (click)="sort('firstName')">First Name</th>
