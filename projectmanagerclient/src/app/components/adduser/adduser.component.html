@@ -95,12 +95,12 @@
         <input type="hidden" formControlName="userId" name="userId" />
         <button
           [disabled]="userForm.pristine || userForm.invalid"
-          class="btn btn-success"
+          class="btn btn-secondary"
         >
           {{ userAction }}
         </button>
         &nbsp;&nbsp;
-        <button type="button" class="btn btn-link" (click)="reset()">
+        <button type="button" class="btn btn-secondary" (click)="reset()">
           Reset
         </button>
       </div>
@@ -145,10 +145,10 @@
               <td>{{ user.Last_Name }}</td>
               <td>{{ user.Employee_ID | number }}</td>
               <td>
-                <button class="btn btn-primary" (click)="editUser(user.User_ID)">
+                <button class="btn btn-secondary" (click)="editUser(user.User_ID)">
                   Edit
                 </button> &nbsp;&nbsp;
-                <button class="btn btn-danger" (click)="deleteUser(user.User_ID)">
+                <button class="btn btn-secondary" (click)="deleteUser(user.User_ID)">
                   Delete
                 </button>
               </td>

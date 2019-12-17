@@ -94,9 +94,9 @@
     <div class="row form-group">
       <div class="col-md-12 offset-md-9">
         <input type="hidden" name="projectId">
-        <button class="btn btn-success" *ngIf="!taskId" [disabled]="!taskForm.form.valid" (click)="addTask()">Add Task</button>
-        <button class="btn btn-success" *ngIf="taskId" [disabled]="!taskForm.form.valid" (click)="updateTask()">Update Task</button> &nbsp;&nbsp;
-        <button type="button" class="btn btn-link" (click)="reset()">Reset</button>
+        <button class="btn btn-secondary" *ngIf="!taskId" [disabled]="!taskForm.form.valid" (click)="addTask()">Add Task</button>
+        <button class="btn btn-secondary" *ngIf="taskId" [disabled]="!taskForm.form.valid" (click)="updateTask()">Update Task</button> &nbsp;&nbsp;
+        <button type="button" class="btn btn-secondary" (click)="reset()">Reset</button>
       </div>
     </div>
   </form>
